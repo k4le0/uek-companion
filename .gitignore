@@ -1,0 +1,12 @@
+# Logs
+*.log
+
+# NPM modules
+node_modules
+
+# Distribution
+www/js/bundle.js
+www/css/styles.css
+
+# Editor settings
+.vscode
