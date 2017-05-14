@@ -42,12 +42,12 @@ class BottomNavigationExample extends Component {
           <BottomNavigationItem
             label="Nearby"
             icon={nearbyIcon}
-            onTouchTap={() => this.select(2)}
+            onTouchTap={() => this.select(3)}
           />
           <BottomNavigationItem
             label="Nearby"
             icon={nearbyIcon}
-            onTouchTap={() => this.select(2)}
+            onTouchTap={() => this.select(4)}
           />
         </BottomNavigation>
       </Paper>

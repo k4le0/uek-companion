@@ -1,10 +1,32 @@
 import React from 'react';
+// require('./index.css');
+
 import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import FlatButton from 'material-ui/FlatButton';
+
+function handleTouchTap() {
+  alert('onTouchTap triggered on the title component');
+}
+
+const styles = {
+  title: {
+    cursor: 'pointer',
+  },
+};
 
 /**
- * A simple example of `AppBar` with an icon on the right.
- * By default, the left icon is a navigation-menu.
+ * This example uses an [IconButton](/#/components/icon-button) on the left, has a clickable `title`
+ * through the `onTouchTap` property, and a [FlatButton](/#/components/flat-button) on the right.
  */
-export default () => (
-  <AppBar title="Title"/>
+const AppBarExampleIconButton = () => (
+  <AppBar
+    title={<span className="title" style={styles.title}>myUEK</span>}
+    onTitleTouchTap={handleTouchTap}
+    iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+    iconElementRight={<FlatButton label="Save" />}
+  />
 );
+
+export default AppBarExampleIconButton;

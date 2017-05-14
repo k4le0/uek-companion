@@ -13,20 +13,24 @@ module.exports = {
     },
     devtool: 'source-map',
     module: {
-        loaders: [{
-            test: /\.js$/,
-            loader: 'babel-loader',
-            exclude: /node_modules/,
-            query: {
-                presets: ['react', 'es2015', 'stage-2']
+        rules: [
+            {
+                test: /\.(js)$/,
+                use: 'babel-loader',
+                exclude: /node_modules/,
+                query: {
+                    presets: ['react', 'es2015', 'stage-2']
+                }
+            }, {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
             }
-        }],
+        ]
     },
     watch: true,
     watchOptions: {
         aggregateTimeout: 300,
         ignored: /node_modules/,
         poll: 1000
-    },
+    }
 };
-
