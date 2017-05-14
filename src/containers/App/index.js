@@ -1,18 +1,18 @@
-// Import all required modules
 import React from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from '../../components/AppBar';
 import BottomNavigation from '../../components/BottomNavigation';
-import BottomNavigationItem from '../../components/BottomNavigationItem';
+
 
 export default class App extends React.Component {
   render() {
     return (
-      <BottomNavigation>
-        <BottomNavigationItem label={"Wydarzenia"} />
-        <BottomNavigationItem label={"Stream"} />
-        <BottomNavigationItem label={"Dyskusje"} />
-        <BottomNavigationItem label={"Harmonogram"} />
-        <BottomNavigationItem label={"Profil"} />
-      </BottomNavigation>
+      <MuiThemeProvider>
+        <div>
+          <AppBar />
+          <BottomNavigation />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
