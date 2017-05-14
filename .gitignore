@@ -7,7 +7,8 @@ node_modules
 # Distribution
 www/js/bundle.js
 www/css/styles.css
-bundle.js
+platforms/browser/www/js/bundle.js
+
 
 # Editor settings
 .vscode
