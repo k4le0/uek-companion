@@ -1,15 +1,33 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
+const styles = {
+  appBarStyle: {
+    backgroundColor: '#8D0126',
+  },
 
+};
 
-/**
- * A simple example of `AppBar` with an icon on the right.
- * By default, the left icon is a navigation-menu.
- */
-export default () => (
-  <AppBar title="myUEK"
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
-  />
-);
+class AppBarNoMenu extends AppBar {
+
+  static defaultProps = {
+    showMenuIconButton: false,
+    title: '',
+    zDepth: 1,
+  };
+
+  render() {
+    return (
+      <AppBar
+        title="Title" 
+        showMenuIconButton='false'
+        style={styles.appBarStyle}
+      />
+    );
+  }
+};
+
+export default AppBarNoMenu;
 
