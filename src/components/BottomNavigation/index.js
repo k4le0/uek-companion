@@ -2,17 +2,25 @@ import React, { Component } from 'react';
 import FontIcon from 'material-ui/FontIcon';
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
-import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 
-const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
-const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
-const nearbyIcon = <IconLocationOn />;
+const eventIcon = <FontIcon className="material-icons">event</FontIcon>;
+const streamIcon = <FontIcon className="material-icons">dashboard</FontIcon>;
+const chatIcon = <FontIcon className="material-icons">chat</FontIcon>;
+const scheduleIcon = <FontIcon className="material-icons">schedule</FontIcon>;
+const profileIcon = <FontIcon className="material-icons">school</FontIcon>;
 
-/**
- * A simple example of `BottomNavigation`, with three labels and icons
- * provided. The selected `BottomNavigationItem` is determined by application
- * state (for instance, by the URL).
- */
+const styles = {
+  bottomNav: {
+    position: 'absolute',
+    left: '0',
+    bottom: '0',
+    width: '100%',
+  },
+  smallerTab: {
+    minWidth: '80px',
+  },
+};
+
 class BottomNavigationExample extends Component {
   state = {
     selectedIndex: 0,
@@ -22,32 +30,37 @@ class BottomNavigationExample extends Component {
 
   render() {
     return (
-      <Paper zDepth={1}>
+      <Paper zDepth={1} style={styles.bottomNav}>
         <BottomNavigation selectedIndex={this.state.selectedIndex}>
           <BottomNavigationItem
-            label="Recents"
-            icon={recentsIcon}
+            label="Wydarzenia"
+            icon={eventIcon}
             onTouchTap={() => this.select(0)}
+            style={styles.smallerTab}
           />
           <BottomNavigationItem
-            label="Favorites"
-            icon={favoritesIcon}
+            label="Stream"
+            icon={streamIcon}
             onTouchTap={() => this.select(1)}
+            style={styles.smallerTab}
           />
           <BottomNavigationItem
-            label="Nearby"
-            icon={nearbyIcon}
+            label="Dyskusje"
+            icon={chatIcon}
             onTouchTap={() => this.select(2)}
+            style={styles.smallerTab}
           />
           <BottomNavigationItem
-            label="Nearby"
-            icon={nearbyIcon}
-            onTouchTap={() => this.select(2)}
+            label="Plan"
+            icon={scheduleIcon}
+            onTouchTap={() => this.select(3)}
+            style={styles.smallerTab}
           />
           <BottomNavigationItem
-            label="Nearby"
-            icon={nearbyIcon}
-            onTouchTap={() => this.select(2)}
+            label="Profil"
+            icon={profileIcon}
+            onTouchTap={() => this.select(4)}
+            style={styles.smallerTab}
           />
         </BottomNavigation>
       </Paper>
