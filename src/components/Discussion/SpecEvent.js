@@ -4,11 +4,6 @@ import FlatButton from 'material-ui/FlatButton';
 
 const SpecEvent = () => (
   <Card>
-    <CardHeader
-      title="URL Avatar"
-      subtitle="Subtitle"
-      avatar="http://placehold.it/300x120"
-    />
     <CardMedia
       overlay={<CardTitle title="Specjalny Event" subtitle="Liczba uczestników" />}
     >
