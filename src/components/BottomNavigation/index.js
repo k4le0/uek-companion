@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import BottomNavigationItem from './../BottomNavigationItem'
-
 const BottomNavigation = styled.div`
     position:fixed;
     left:0px;
@@ -16,16 +14,10 @@ const BottomNavigation = styled.div`
     box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.16);
 `
 
-export default () => {
-    // Render these styled components like normal react components. They will pass on all props and work
-    // like normal react components – except they're styled!
+export default (props) => {
     return (
         <BottomNavigation>
-            <BottomNavigationItem />
-            <BottomNavigationItem />
-            <BottomNavigationItem />
-            <BottomNavigationItem />
-            <BottomNavigationItem />
+            {props.children}
         </BottomNavigation>
     );
 }

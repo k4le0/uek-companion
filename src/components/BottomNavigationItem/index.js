@@ -5,11 +5,13 @@ import Wrapper from './Wrapper';
 import Label from './Label';
 import Icon from './Icon'
 
-export default () => {
+function BottomNavigationItem(props){
   return (
     <Wrapper>
       <Icon />
-      <Label>Dyskusje</Label>
+      <Label>{props.label}</Label>
     </Wrapper>
   );
 }
+
+export default BottomNavigationItem;
