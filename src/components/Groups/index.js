@@ -20,24 +20,24 @@ const styles = {
 
 const tilesData = [
   {
-    img: '../../images/grid-list/coffe.jpg',
-    title: 'KrZZ1011',
-    author: 'jill111',
+    img: 'http://placehold.it/200x203',
+    title: 'Kampus UEK',
+    author: '111111',
   },
   {
-    img: '../../images/grid-list/coffe.jpg',
+    img: 'http://placehold.it/200x202',
     title: 'KrZZ1012',
-    author: 'pashminu',
+    author: 'dr Przemysław Kowalski',
   },
   {
-    img: '../../images/grid-list/coffe.jpg',
+    img: 'http://placehold.it/200x201',
     title: 'KrZZ1013',
-    author: 'Danson67',
+    author: '333333',
   },
   {
-    img: '../../images/grid-list/coffe.jpg',
+    img: 'http://placehold.it/200x200',
     title: 'KrZZ1014',
-    author: 'fancycrave1',
+    author: '44444444',
   },
  
 ];
@@ -51,7 +51,7 @@ const Groups = () => (
       cellHeight={180}
       style={styles.gridList}
     >
-      <Subheader>December</Subheader>
+      <Subheader>Twoje Grupy i wydarzenia </Subheader>
       {tilesData.map((tile) => (
         <GridTile
           key={tile.img}
