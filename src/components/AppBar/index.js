@@ -22,7 +22,7 @@ class AppBarNoMenu extends AppBar {
     return (
       <AppBar
         title="Title" 
-        showMenuIconButton='false'
+        showMenuIconButton={false}
         style={styles.appBarStyle}
       />
     );
