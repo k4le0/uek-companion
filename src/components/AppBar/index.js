@@ -8,6 +8,7 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 const styles = {
   appBarStyle: {
     backgroundColor: '#8D0126',
+    textAlign: 'center'
   },
 
 };
@@ -23,7 +24,7 @@ class AppBarNoMenu extends AppBar {
   render() {
     return (
       <AppBar
-        title="Title" 
+        title="myUEK" 
         showMenuIconButton={false}
         style={styles.appBarStyle}
       />
