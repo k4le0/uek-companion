@@ -19,14 +19,14 @@ const styles = {
     width: '100%',
   },
   smallerTab: {
-    minWidth: '80px',
+    minWidth: '64px',
     textAlign: 'center',
   },
 };
 
 class BottomNavigationExample extends Component {
   state = {
-    selectedIndex: 0,
+    selectedIndex: 2,
   };
 
   select = (index) => this.setState({ selectedIndex: index });
