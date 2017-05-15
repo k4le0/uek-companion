@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-const SpecEvent = () => (
+const SpecialEventCard = () => (
   <Card>
     <CardMedia
       overlay={<CardTitle title="Specjalny Event" subtitle="Liczba uczestników" />}
@@ -12,4 +12,4 @@ const SpecEvent = () => (
   </Card>
 );
 
-export default SpecEvent;
+export default SpecialEventCard;

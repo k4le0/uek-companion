@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+
 import FontIcon from 'material-ui/FontIcon';
-import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
+import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 
 const eventIcon = <FontIcon className="material-icons">event</FontIcon>;
 const streamIcon = <FontIcon className="material-icons">dashboard</FontIcon>;
@@ -18,6 +20,7 @@ const styles = {
   },
   smallerTab: {
     minWidth: '80px',
+    textAlign: 'center',
   },
 };
 
@@ -37,30 +40,35 @@ class BottomNavigationExample extends Component {
             icon={eventIcon}
             onTouchTap={() => this.select(0)}
             style={styles.smallerTab}
+            containerElement={<Link to="/event"/>}
           />
           <BottomNavigationItem
             label="Stream"
             icon={streamIcon}
             onTouchTap={() => this.select(1)}
             style={styles.smallerTab}
+            containerElement={<Link to="/stream"/>}
           />
           <BottomNavigationItem
             label="Dyskusje"
             icon={chatIcon}
             onTouchTap={() => this.select(2)}
             style={styles.smallerTab}
-          />
+            containerElement={<Link to="/"/>}
+          />  
           <BottomNavigationItem
             label="Plan"
             icon={scheduleIcon}
             onTouchTap={() => this.select(3)}
             style={styles.smallerTab}
+            containerElement={<Link to="/schedule"/>}
           />
           <BottomNavigationItem
             label="Profil"
             icon={profileIcon}
             onTouchTap={() => this.select(4)}
             style={styles.smallerTab}
+            containerElement={<Link to="/profile"/>}
           />
         </BottomNavigation>
       </Paper>
