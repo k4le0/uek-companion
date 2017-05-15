@@ -7,6 +7,7 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 const styles = {
   appBarStyle: {
+    position: 'fixed',
     backgroundColor: '#8D0126',
     textAlign: 'center'
   },
