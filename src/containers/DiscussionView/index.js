@@ -1,11 +1,15 @@
 import React from 'react';
-import Groups from '../../components/Groups';
+import GridListExampleSingleLine from '../../components/Groups';
+import GridListExampleComplex from '../../components/Classes';
+import CardExampleWithAvatar from '../../components/SpecialEventCard';
 
 class DiscussionView extends React.Component {
   render() {
     return (
       <div>
-        <Groups />
+        <CardExampleWithAvatar/>
+        <GridListExampleSingleLine />
+        <GridListExampleComplex />
       </div>
     );
   }
