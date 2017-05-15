@@ -1,11 +1,11 @@
 import React from 'react';
-import Groups from '../../components/Groups';
+import GridListExampleSingleLine from '../../components/Groups';
 
 class DiscussionView extends React.Component {
   render() {
     return (
       <div>
-        <Groups />
+        <GridListExampleSingleLine />
       </div>
     );
   }

@@ -32,4 +32,3 @@ class AppBarNoMenu extends AppBar {
 };
 
 export default AppBarNoMenu;
-
