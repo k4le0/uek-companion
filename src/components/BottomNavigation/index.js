@@ -13,7 +13,7 @@ const profileIcon = <FontIcon className="material-icons">school</FontIcon>;
 
 const styles = {
   bottomNav: {
-    position: 'absolute',
+    position: 'fixed',
     left: '0',
     bottom: '0',
     width: '100%',
