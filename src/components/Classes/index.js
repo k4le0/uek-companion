@@ -11,9 +11,12 @@ const styles = {
   },
   gridList: {
     width: '100%',
-    height: '90%',
-    overflowY: 'auto',
+    overflowY: 'scroll',
   },
+  titleStyle: {
+    background: '#fafafa',
+    color: 'black'
+  }
 };
 
 const tilesData = [
@@ -79,7 +82,7 @@ const GridListExampleComplex = () => (
           actionIcon={<IconButton><StarBorder color="black" /></IconButton>}
           actionPosition="right"
           titlePosition="top"
-          titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+          style={styles.titleStyle}
           cols={tile.featured ? 2 : 1}
           rows={tile.featured ? 2 : 1}
         >

@@ -6,7 +6,7 @@ import CardExampleWithAvatar from '../../components/SpecialEventCard';
 class DiscussionView extends React.Component {
   render() {
     return (
-      <div>
+      <div style={{position: 'relative', top: '64px'}}>
         <CardExampleWithAvatar/>
         <GridListExampleSingleLine />
         <GridListExampleComplex />
