@@ -85,7 +85,7 @@ const styles = {
     overflowX: 'auto',
   },
   titleStyle: {
-    color: 'rgb(0, 188, 212)',
+    color: '#fafafa',
   },
 };
 
@@ -142,7 +142,7 @@ const GridListExampleSingleLine = () => (
         <GridTile
           key={tile.img}
           title={tile.title}
-          actionIcon={<IconButton><StarBorder color="rgb(0, 188, 212)" /></IconButton>}
+          actionIcon={<IconButton><StarBorder color="#fafafa" /></IconButton>}
           titleStyle={styles.titleStyle}
           titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
         >

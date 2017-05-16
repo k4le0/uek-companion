@@ -10,8 +10,8 @@ const styles = {
     justifyContent: 'space-around',
   },
   gridList: {
-    width: 500,
-    height: 450,
+    width: '100%',
+    height: '90%',
     overflowY: 'auto',
   },
 };
@@ -76,8 +76,8 @@ const GridListExampleComplex = () => (
         <GridTile
           key={tile.img}
           title={tile.title}
-          actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-          actionPosition="left"
+          actionIcon={<IconButton><StarBorder color="black" /></IconButton>}
+          actionPosition="right"
           titlePosition="top"
           titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
           cols={tile.featured ? 2 : 1}
