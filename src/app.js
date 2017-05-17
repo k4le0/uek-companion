@@ -11,6 +11,17 @@ injectTapEventPlugin();
 // Import main application container
 import App from './containers/App'
 
+//Import firebase modules
+import * as firebase from 'firebase';
+
+
+
+
+
+  // Initialize Firebase
+
+
+
 render((
     <HashRouter>
         <App/>
