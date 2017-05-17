@@ -2,6 +2,7 @@ import React from 'react';
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import { Link } from 'react-router-dom'
 
 const styles = {
   root: {
@@ -72,7 +73,9 @@ const GridListExampleSingleLine = () => (
         <GridTile
           key={tile.img}
           title={tile.title}
-          actionIcon={<IconButton><StarBorder color="#fafafa" /></IconButton>}
+          subtitle={<span>by <b>{tile.author}</b></span>}
+          containerElement={<Link to="/chat"/>}
+          actionIcon={<IconButton><StarBorder color="rgb(0, 188, 212)" /></IconButton>}
           titleStyle={styles.titleStyle}
           titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)">
           <img src={tile.img} />
