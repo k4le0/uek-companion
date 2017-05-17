@@ -6,6 +6,7 @@ import StreamView from '../StreamView';
 import DiscussionView from '../DiscussionView';
 import ScheduleView from '../ScheduleView';
 import ProfileView from '../ProfileView';
+import ChatView from '../ChatView';
 
 const MainView = () => (
   <main>
@@ -15,6 +16,7 @@ const MainView = () => (
       <Route path='/stream' component={StreamView}/>
       <Route path='/schedule' component={ScheduleView}/>
       <Route path='/profile' component={ProfileView}/>
+      <Route path='/chat' component={ChatView}/>
     </Switch>
   </main>
 );
