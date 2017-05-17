@@ -14,13 +14,7 @@ import App from './containers/App'
 //Import firebase modules
 import * as firebase from 'firebase';
 
-
-
-
-
-  // Initialize Firebase
-
-
+// Initialize Firebase
 
 render((
     <HashRouter>
