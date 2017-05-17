@@ -13,20 +13,20 @@ const profileIcon = <FontIcon className="material-icons">school</FontIcon>;
 
 const styles = {
   bottomNav: {
-    position: 'absolute',
+    position: 'fixed',
     left: '0',
     bottom: '0',
     width: '100%',
   },
   smallerTab: {
-    minWidth: '80px',
+    minWidth: '64px',
     textAlign: 'center',
   },
 };
 
 class BottomNavigationExample extends Component {
   state = {
-    selectedIndex: 0,
+    selectedIndex: 2,
   };
 
   select = (index) => this.setState({ selectedIndex: index });
