@@ -1,5 +1,4 @@
 import React from 'react';
-// require('./index.css');
 
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
@@ -7,6 +6,7 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 const styles = {
   appBarStyle: {
+    position: 'fixed',
     backgroundColor: '#8D0126',
     textAlign: 'center'
   },

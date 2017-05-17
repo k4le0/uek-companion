@@ -10,10 +10,13 @@ const styles = {
     justifyContent: 'space-around',
   },
   gridList: {
-    width: 500,
-    height: 450,
-    overflowY: 'auto',
+    width: '100%',
+    overflowY: 'scroll',
   },
+  titleStyle: {
+    background: '#fafafa',
+    color: 'black'
+  }
 };
 
 const tilesData = [
@@ -76,10 +79,10 @@ const GridListExampleComplex = () => (
         <GridTile
           key={tile.img}
           title={tile.title}
-          actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-          actionPosition="left"
+          actionIcon={<IconButton><StarBorder color="black" /></IconButton>}
+          actionPosition="right"
           titlePosition="top"
-          titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+          style={styles.titleStyle}
           cols={tile.featured ? 2 : 1}
           rows={tile.featured ? 2 : 1}
         >
