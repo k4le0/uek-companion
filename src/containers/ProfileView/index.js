@@ -2,6 +2,7 @@ import React from 'react';
 
 import Wrapper from './Wrapper';
 import ProfileCard from '../../components/ProfileCard';
+import GroupListItem from '../../components/GroupListItem';
 
 const UserAPI = {
   user: {
@@ -15,6 +16,7 @@ const UserAPI = {
     ]
   },
   getUser: function () { return this.user },
+  getGroups: function () { return this.user.groups },
 };
 
 class ProfileView extends React.Component {
@@ -23,7 +25,15 @@ class ProfileView extends React.Component {
 
     return (
       <Wrapper>
-        <ProfileCard username={user.username} number={user.number} image={user.image}/>
+        <ProfileCard username={user.username} number={user.number} image={user.image} />
+        {
+          UserAPI.getGroups().map(group => (
+            <GroupListItem groupName={group.name}
+              image={group.image}
+              membersCount={group.members}
+              key={group.number} />
+          ))
+        }
       </Wrapper>
     );
   }
