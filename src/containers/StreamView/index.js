@@ -12,7 +12,8 @@ const styles = {
     borderRadius: '3px'
   },
   title: {
-    fontSize: "20px"
+    fontSize: "16px",
+    width: "70%",
   }
 };
 
