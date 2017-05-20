@@ -13,7 +13,7 @@ const styles = {
 
 };
 
-class AppBarNoMenu extends AppBar {
+class Header extends AppBar {
 
   static defaultProps = {
     showMenuIconButton: false,
@@ -32,4 +32,4 @@ class AppBarNoMenu extends AppBar {
   }
 };
 
-export default AppBarNoMenu;
+export default Header;

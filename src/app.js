@@ -1,11 +1,13 @@
 // Import all required modules
 import React from 'react';
 import { render } from 'react-dom';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import { HashRouter } from 'react-router-dom'
+
+// Import react router modules
+import { HashRouter as Router, Redirect, Route } from 'react-router-dom';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
+import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 // Import main application container
@@ -21,7 +23,7 @@ moment.updateLocale('pl', null);
 // Initialize Firebase
 
 render((
-    <HashRouter>
-        <App/>
-    </HashRouter>
+    <Router>
+        <Route path="/" component={App}></Route>
+    </Router>
 ), document.getElementById('app'));

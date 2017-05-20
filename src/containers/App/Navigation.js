@@ -24,7 +24,7 @@ const styles = {
   },
 };
 
-class BottomNavigationExample extends Component {
+class Navigation extends Component {
   state = {
     selectedIndex: 2,
   };
@@ -54,7 +54,7 @@ class BottomNavigationExample extends Component {
             icon={chatIcon}
             onTouchTap={() => this.select(2)}
             style={styles.smallerTab}
-            containerElement={<Link to="/"/>}
+            containerElement={<Link to="/discussion"/>}
           />  
           <BottomNavigationItem
             label="Plan"
@@ -76,4 +76,4 @@ class BottomNavigationExample extends Component {
   }
 }
 
-export default BottomNavigationExample;
+export default Navigation;

@@ -12,7 +12,6 @@ const styles = {
 };
 
 const StreamsListTile = (props) => (
-    console.log(props.featured ? 2 : 1),
     <GridTile
         style={styles.tileStyle}
         title={props.title}
