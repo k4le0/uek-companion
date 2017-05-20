@@ -4,17 +4,14 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 
 const styles = {
   card: {
-    width: '100%',
-    borderRadius: '3px',
-  },
-
+    marginBottom: '8px',
+  }
 };
 
 const SpecialChatTile = (props) => (
-  <Card containerStyle={styles.card}>
+  <Card style={styles.card}>
     <CardMedia
-      overlay={<CardTitle title="Specjalne wydarzenie" subtitle="Jakieś wyjątkowe wydarzenie" />}
-    >
+      overlay={<CardTitle title={props.title} subtitle={props.subtitle} />}>
       <img src="http://placehold.it/360x216/8D0126/8D0126" />
     </CardMedia>
   </Card>
