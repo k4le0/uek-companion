@@ -29,17 +29,23 @@ const styles = {
 
 const EventDetailsCard = (props) => (
     <Card style={styles.card}>
+        <CardHeader
+            title={props.host}
+            avatar={props.hostIcon}
+            subtitle={props.hostText}
+        />
         <CardMedia
             overlay={<CardTitle title={props.title} subtitle={"Zainteresowanych: " + props.attend} />}
             overlayContentStyle={styles.overlay}
         >
             <img src={props.image} />
         </CardMedia>
-        <CardHeader
-            title={props.host}
-            avatar={props.hostIcon}
-            subtitle={props.hostText}
-        />
+        <Wrapper>
+            <CardTitle title={moment(props.date).format("DD MMMM")} subtitle={"godz. " + moment(props.date).format("HH:mm")} />
+            <CardActions style={styles.left}>
+                <FlatButton label="Dołącz" style={styles.button} />
+            </CardActions>
+        </Wrapper>
         <Divider />
         <Subheader>Opis wydarzenia</Subheader>
         <CardText>
@@ -49,12 +55,7 @@ const EventDetailsCard = (props) => (
         Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
         </CardText>
         <Divider />
-        <Wrapper>
-            <CardTitle title={moment(props.date).format("DD MMMM")} subtitle={"godz. " + moment(props.date).format("HH:mm")} />
-            <CardActions style={styles.left}>
-                <FlatButton label="Dołącz" style={styles.button} />
-            </CardActions>
-        </Wrapper>
+        <Subheader>Komentarze:</Subheader>
     </Card>
 );
 
