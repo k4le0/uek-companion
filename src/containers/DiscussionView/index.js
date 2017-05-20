@@ -1,17 +1,19 @@
 import React from 'react';
-import Divider from 'material-ui/Divider';
+
+import Wrapper from './Wrapper';
+
 import GridListExampleSingleLine from '../../components/Groups';
 import GridListExampleComplex from '../../components/Classes';
-import CardExampleWithAvatar from '../../components/SpecialEventCard';
+import CardExampleWithAvatar from '../../components/SpecialChatTile';
 
 class DiscussionView extends React.Component {
   render() {
     return (
-      <div style={{maxWidth: '100%', overflowX: 'hidden', position: 'relative', top: '64px', marginBottom: '56px'}}>
-        <CardExampleWithAvatar/>
+      <Wrapper>
+        <CardExampleWithAvatar />
         <GridListExampleSingleLine />
         <GridListExampleComplex />
-      </div>
+      </Wrapper>
     );
   }
 }
