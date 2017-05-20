@@ -1,20 +1,21 @@
 import React from 'react';
-import truncate from 'truncate';
 import { Link } from 'react-router-dom';
 
-import { Card, CardActions, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import moment from 'moment';
+
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-import BottomWrapper from './BottomWrapper'
+import Wrapper from './Wrapper'
 
 const styles = {
     card: {
         margin: '4px 0',
     },
     overlay: {
-        background: 'rgba(0, 0, 0, 0)',
+        background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)',
     },
-    button:{
+    button: {
         color: '#8D0126',
     },
 
@@ -23,20 +24,28 @@ const styles = {
 const EventListCard = (props) => (
     <Card style={styles.card}>
         <Link to={`/event/${props.number}`}>
-            <CardMedia>
+            <CardHeader
+                title={props.host}
+                avatar={props.hostIcon}
+                subtitle={props.hostText}
+            />
+            <CardMedia
+                overlay={<CardTitle title={props.title} subtitle={"Zainteresowanych: " + props.attend} />}
+                overlayContentStyle={styles.overlay}
+            >
                 <img src={props.image} />
             </CardMedia>
         </Link>
-        <BottomWrapper>
+        <Wrapper>
             <Link to={`/event/${props.number}`}>
-                <CardTitle title={truncate(props.title, 11)} subtitle={"Idzie: " + props.attend} />
+                <CardTitle title={moment(props.date).format("DD MMMM")} subtitle={"godz. " + moment(props.date).format("HH:mm")} />
             </Link>
             <CardActions>
                 <Link to={`/event/${props.number}/join`}>
-                    <FlatButton label="Dołącz" style={styles.button}/>
+                    <FlatButton label="Dołącz" style={styles.button} />
                 </Link>
             </CardActions>
-        </BottomWrapper>
+        </Wrapper>
     </Card>
 );
 
