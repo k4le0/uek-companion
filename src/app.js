@@ -16,8 +16,7 @@ import * as firebase from 'firebase';
 
 //Import momnents modules
 import moment from "moment";
-import locale_pl from "moment/locale/pl";
-moment.locale("pl", locale_pl);
+moment.updateLocale('pl', null);
 
 // Initialize Firebase
 
