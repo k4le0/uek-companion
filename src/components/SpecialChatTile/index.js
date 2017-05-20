@@ -12,7 +12,7 @@ const SpecialChatTile = (props) => (
   <Card style={styles.card}>
     <CardMedia
       overlay={<CardTitle title={props.title} subtitle={props.subtitle} />}>
-      <img src="http://placehold.it/360x216/8D0126/8D0126" />
+      <img src={props.image} />
     </CardMedia>
   </Card>
 );
