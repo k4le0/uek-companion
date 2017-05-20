@@ -19,6 +19,25 @@ import ProfileView from '../ProfileView';
 import ChatView from '../ChatView';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super();
+    this.state = {
+      baseView: '/discussion',
+      iconLeft: '',
+      iconRight: '',
+      navigationOption: 0,
+      selectedIndex: this.getCurrentIndex(props.location.pathname),
+    };
+  }
+
+  getCurrentIndex = (path) => {
+    if (path == '/event') { return 0; }
+    if (path == '/stream') { return 1; }
+    if (path == '/discussion') { return 2; }
+    if (path == '/schedule') { return 3; }
+    if (path == '/profile') { return 4; }
+  };
+
   render() {
     return (
       <MuiThemeProvider muiTheme={AppTheme}>
@@ -26,7 +45,7 @@ export default class App extends React.Component {
           <Header />
           <Switch>
             <Route exact path="/" render={() => (
-              <Redirect to="/discussion" />
+              <Redirect to={this.state.baseView} />
             )} />
             <Route path='/discussion' component={DiscussionView} />
             <Route path='/event' component={EventsView} />
@@ -35,11 +54,9 @@ export default class App extends React.Component {
             <Route path='/profile' component={ProfileView} />
             <Route path='/chat' component={ChatView} />
           </Switch>
-          <Navigation />
-          {
-            console.log(this.props.location)
-          }
+          <Navigation index={this.state.selectedIndex} option={this.state.navigationOption} />
         </Wrapper>
+
       </MuiThemeProvider>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, matchPath } from 'react-router-dom';
 
 import FontIcon from 'material-ui/FontIcon';
 import Paper from 'material-ui/Paper';
@@ -25,9 +25,13 @@ const styles = {
 };
 
 class Navigation extends Component {
-  state = {
-    selectedIndex: 2,
-  };
+  constructor(props) {
+    super();
+    this.state = {
+      navigationOption: props.option,
+      selectedIndex: props.index,
+    };
+  }
 
   select = (index) => this.setState({ selectedIndex: index });
 
@@ -40,35 +44,35 @@ class Navigation extends Component {
             icon={eventIcon}
             onTouchTap={() => this.select(0)}
             style={styles.smallerTab}
-            containerElement={<Link to="/event"/>}
+            containerElement={<Link to="/event" />}
           />
           <BottomNavigationItem
             label="Stream"
             icon={streamIcon}
             onTouchTap={() => this.select(1)}
             style={styles.smallerTab}
-            containerElement={<Link to="/stream"/>}
+            containerElement={<Link to="/stream" />}
           />
           <BottomNavigationItem
             label="Dyskusje"
             icon={chatIcon}
             onTouchTap={() => this.select(2)}
             style={styles.smallerTab}
-            containerElement={<Link to="/discussion"/>}
-          />  
+            containerElement={<Link to="/discussion" />}
+          />
           <BottomNavigationItem
             label="Plan"
             icon={scheduleIcon}
             onTouchTap={() => this.select(3)}
             style={styles.smallerTab}
-            containerElement={<Link to="/schedule"/>}
+            containerElement={<Link to="/schedule" />}
           />
           <BottomNavigationItem
             label="Profil"
             icon={profileIcon}
             onTouchTap={() => this.select(4)}
             style={styles.smallerTab}
-            containerElement={<Link to="/profile"/>}
+            containerElement={<Link to="/profile" />}
           />
         </BottomNavigation>
       </Paper>
