@@ -11,12 +11,10 @@ const Wrapper = styled.div`
     width: 100%;
     z-index: -1;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-direction: column;
-    flex-wrap: wrap;
     overflow-y: scroll;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
 `
 
 export default Wrapper;

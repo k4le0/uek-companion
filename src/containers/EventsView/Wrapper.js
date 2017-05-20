@@ -13,10 +13,8 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    flex-wrap: wrap;
     overflow-y: scroll;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
 `
 
 export default Wrapper;

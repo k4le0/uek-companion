@@ -4,15 +4,13 @@ import Wrapper from './Wrapper';
 
 import GridListExampleSingleLine from '../../components/Groups';
 import GridListExampleComplex from '../../components/Classes';
-import CardExampleWithAvatar from '../../components/SpecialChatTile';
+import SpecialChatTile from '../../components/SpecialChatTile';
 
 class DiscussionView extends React.Component {
   render() {
     return (
       <Wrapper>
-        <CardExampleWithAvatar />
-        <GridListExampleSingleLine />
-        <GridListExampleComplex />
+        <SpecialChatTile />
       </Wrapper>
     );
   }

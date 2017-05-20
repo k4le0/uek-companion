@@ -1,15 +1,23 @@
 import React from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
 
-const CardExampleWithAvatar = () => (
-  <Card>
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+
+const styles = {
+  card: {
+    width: '100%',
+    borderRadius: '3px',
+  },
+
+};
+
+const SpecialChatTile = (props) => (
+  <Card containerStyle={styles.card}>
     <CardMedia
       overlay={<CardTitle title="Specjalne wydarzenie" subtitle="Jakieś wyjątkowe wydarzenie" />}
     >
-      <img src="http://www.material-ui.com/images/nature-600-337.jpg" />
+      <img src="http://placehold.it/360x216/8D0126/8D0126" />
     </CardMedia>
   </Card>
 );
 
-export default CardExampleWithAvatar;
+export default SpecialChatTile;
