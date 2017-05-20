@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { connect } from "react-redux";
+
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
@@ -17,26 +19,21 @@ const styles = {
 
 class Header extends React.Component {
   static defaultProps = {
-    showMenuIconButton: false,
-    title: '',
     zDepth: 1,
   };
 
-  changeHeaderState() {
-    this.props.change(false)
-  }
-
   render() {
+
+    console.log()
     let leftIcon = null;
     let rightIcon = null;
-    if (this.props.option) {
-      leftIcon = <Link to={"/discussion"} onClick={this.changeHeaderState.bind(this)}><IconButton><FontIcon color={white} className="material-icons">keyboard_arrow_left</FontIcon></IconButton></Link>;
+    if (this.props.chat.chatVisible) {
+      leftIcon = <Link to={"/discussion"} onClick={() => this.props.changeVisible(false)}><IconButton><FontIcon color={white} className="material-icons">keyboard_arrow_left</FontIcon></IconButton></Link>;
     }
-    console.log(leftIcon);
     return (
       <AppBar
         title={this.props.title}
-        showMenuIconButton={this.props.option ? true : false}
+        showMenuIconButton={this.props.chat.chatVisible ? true : false}
         style={styles.appBarStyle}
         iconElementLeft={leftIcon}
       />
@@ -44,4 +41,21 @@ class Header extends React.Component {
   }
 };
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    chat: state.chatReducer,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeVisible: (value) => {
+      dispatch({
+        type: "CHANGE",
+        payload: value
+      })
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

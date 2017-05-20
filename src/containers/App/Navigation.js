@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import { connect } from "react-redux";
+
 import FontIcon from 'material-ui/FontIcon';
 import Paper from 'material-ui/Paper';
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
@@ -31,54 +33,57 @@ const styles = {
   },
 };
 
-class Navigation extends React.Component  {
-  constructor(props) {
-    super(props);
-    this.state = {
-      navigationOption: props.option,
-      selectedIndex: props.index,
-    };
-  }
+class Navigation extends React.Component {
+  getCurrentIndex = (path) => {
+    if (path == '/event') { return 0; }
+    if (path == '/stream') { return 1; }
+    if (path == '/discussion') { return 2; }
+    if (path == '/schedule') { return 3; }
+    if (path == '/profile') { return 4; }
+  };
 
-  select = (index) => this.setState({ selectedIndex: index });
+  componentDidMount() {
+    const index = this.getCurrentIndex(this.props.location.pathname);
+    this.props.setSelected(index);
+  };
 
   render() {
-    if (this.state.navigationOption) {
+    if (this.props.chat.chatVisible) {
       return (
         <Paper zDepth={1} style={styles.bottomNav}>
-          <BottomNavigation selectedIndex={this.state.selectedIndex}>
+          <BottomNavigation selectedIndex={this.props.chat.selectedIndex}>
             <BottomNavigationItem
               label="Pytania"
               icon={questionIcon}
-              onTouchTap={() => this.select(0)}
+              onTouchTap={() => this.props.setSelected(0)}
               style={styles.smallerTab}
               containerElement={<Link to="/questions" />}
             />
             <BottomNavigationItem
               label="Informacje"
               icon={infoIcon}
-              onTouchTap={() => this.select(1)}
+              onTouchTap={() => this.props.setSelected(1)}
               style={styles.smallerTab}
               containerElement={<Link to="/info" />}
             />
             <BottomNavigationItem
               label="Czat"
               icon={chatIcon}
-              onTouchTap={() => this.select(2)}
+              onTouchTap={() => this.props.setSelected(2)}
               style={styles.smallerTab}
               containerElement={<Link to="/chat" />}
             />
             <BottomNavigationItem
               label="Obecność"
               icon={attendenceIcon}
-              onTouchTap={() => this.select(3)}
+              onTouchTap={() => this.props.setSelected(3)}
               style={styles.smallerTab}
               containerElement={<Link to="/attendence" />}
             />
             <BottomNavigationItem
               label="Ankiety"
               icon={pollsIcon}
-              onTouchTap={() => this.select(4)}
+              onTouchTap={() => this.props.setSelected(4)}
               style={styles.smallerTab}
               containerElement={<Link to="/polls" />}
             />
@@ -88,39 +93,39 @@ class Navigation extends React.Component  {
     } else {
       return (
         <Paper zDepth={1} style={styles.bottomNav}>
-          <BottomNavigation selectedIndex={this.state.selectedIndex}>
+          <BottomNavigation selectedIndex={this.props.chat.selectedIndex}>
             <BottomNavigationItem
               label="Wydarzenia"
               icon={eventIcon}
-              onTouchTap={() => this.select(0)}
+              onTouchTap={() => this.props.setSelected(0)}
               style={styles.smallerTab}
               containerElement={<Link to="/event" />}
             />
             <BottomNavigationItem
               label="Stream"
               icon={streamIcon}
-              onTouchTap={() => this.select(1)}
+              onTouchTap={() => this.props.setSelected(1)}
               style={styles.smallerTab}
               containerElement={<Link to="/stream" />}
             />
             <BottomNavigationItem
               label="Dyskusje"
               icon={discussionIcon}
-              onTouchTap={() => this.select(2)}
+              onTouchTap={() => this.props.setSelected(2)}
               style={styles.smallerTab}
               containerElement={<Link to="/discussion" />}
             />
             <BottomNavigationItem
               label="Plan"
               icon={scheduleIcon}
-              onTouchTap={() => this.select(3)}
+              onTouchTap={() => this.props.setSelected(3)}
               style={styles.smallerTab}
               containerElement={<Link to="/schedule" />}
             />
             <BottomNavigationItem
               label="Profil"
               icon={profileIcon}
-              onTouchTap={() => this.select(4)}
+              onTouchTap={() => this.props.setSelected(4)}
               style={styles.smallerTab}
               containerElement={<Link to="/profile" />}
             />
@@ -131,4 +136,21 @@ class Navigation extends React.Component  {
   }
 }
 
-export default Navigation;
+const mapStateToProps = (state) => {
+  return {
+    chat: state.chatReducer,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setSelected: (value) => {
+      dispatch({
+        type: "SELECT",
+        payload: value
+      })
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
