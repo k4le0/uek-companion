@@ -20,7 +20,7 @@ import ChatView from '../ChatView';
 
 export default class App extends React.Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       baseView: '/discussion',
       iconLeft: '',
