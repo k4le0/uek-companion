@@ -25,9 +25,14 @@ export default class App extends React.Component {
       baseView: '/discussion',
       iconLeft: '',
       iconRight: '',
-      navigationOption: 0,
+      chatVisible: true,
       selectedIndex: this.getCurrentIndex(props.location.pathname),
     };
+  }
+  changeChatVisibility(visible) {
+    this.setState({
+      chatVisible: visible
+    });
   }
 
   getCurrentIndex = (path) => {
@@ -42,7 +47,9 @@ export default class App extends React.Component {
     return (
       <MuiThemeProvider muiTheme={AppTheme}>
         <Wrapper>
-          <Header />
+          <Header title={"myUEK"}
+            option={this.state.chatVisible}
+            change={() => this.changeChatVisibility()} />
           <Switch>
             <Route exact path="/" render={() => (
               <Redirect to={this.state.baseView} />
@@ -54,7 +61,7 @@ export default class App extends React.Component {
             <Route path='/profile' component={ProfileView} />
             <Route path='/chat' component={ChatView} />
           </Switch>
-          <Navigation index={this.state.selectedIndex} option={this.state.navigationOption} />
+          <Navigation index={this.state.selectedIndex} option={this.state.chatVisible} />
         </Wrapper>
 
       </MuiThemeProvider>

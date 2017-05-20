@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, matchPath } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import FontIcon from 'material-ui/FontIcon';
 import Paper from 'material-ui/Paper';
@@ -31,11 +31,11 @@ const styles = {
   },
 };
 
-class Navigation extends Component {
+class Navigation extends React.Component  {
   constructor(props) {
     super(props);
     this.state = {
-      navigationOption: 1,
+      navigationOption: props.option,
       selectedIndex: props.index,
     };
   }
@@ -43,7 +43,7 @@ class Navigation extends Component {
   select = (index) => this.setState({ selectedIndex: index });
 
   render() {
-    if (this.state.navigationOption == 1) {
+    if (this.state.navigationOption) {
       return (
         <Paper zDepth={1} style={styles.bottomNav}>
           <BottomNavigation selectedIndex={this.state.selectedIndex}>
