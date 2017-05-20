@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { List } from 'material-ui/List';
+
 import Wrapper from './Wrapper';
 import ProfileCard from '../../components/ProfileCard';
 import GroupListItem from '../../components/GroupListItem';
@@ -26,14 +28,16 @@ class ProfileView extends React.Component {
     return (
       <Wrapper>
         <ProfileCard username={user.username} number={user.number} image={user.image} />
-        {
-          UserAPI.getGroups().map(group => (
-            <GroupListItem groupName={group.name}
-              image={group.image}
-              membersCount={group.members}
-              key={group.number} />
-          ))
-        }
+        <List>
+          {
+            UserAPI.getGroups().map(group => (
+              <GroupListItem groupName={group.name}
+                image={group.image}
+                membersCount={group.members}
+                key={group.number} />
+            ))
+          }
+        </List>
       </Wrapper>
     );
   }
