@@ -14,6 +14,11 @@ import App from './containers/App'
 //Import firebase modules
 import * as firebase from 'firebase';
 
+//Import momnents modules
+import moment from "moment";
+import locale_pl from "moment/locale/pl";
+moment.locale("pl", locale_pl);
+
 // Initialize Firebase
 
 render((
