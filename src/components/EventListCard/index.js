@@ -6,7 +6,7 @@ import moment from 'moment';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-import BottomWrapper from './BottomWrapper'
+import Wrapper from './Wrapper'
 
 const styles = {
     card: {
@@ -36,7 +36,7 @@ const EventListCard = (props) => (
                 <img src={props.image} />
             </CardMedia>
         </Link>
-        <BottomWrapper>
+        <Wrapper>
             <Link to={`/event/${props.number}`}>
                 <CardTitle title={moment(props.date).format("DD MMMM")} subtitle={"godz. " + moment(props.date).format("HH:mm")} />
             </Link>
@@ -45,7 +45,7 @@ const EventListCard = (props) => (
                     <FlatButton label="Dołącz" style={styles.button} />
                 </Link>
             </CardActions>
-        </BottomWrapper>
+        </Wrapper>
     </Card>
 );
 
