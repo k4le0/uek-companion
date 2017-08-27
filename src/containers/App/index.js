@@ -17,21 +17,26 @@ import DiscussionsView from '../DiscussionsView';
 import ScheduleView from '../ScheduleView';
 import ProfileView from '../ProfileView';
 
+import Firebase from '../../components/Firebase'
+
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       baseView: '/discussion',
+      authorized: false,
     };
   }
 
   render() {
+
     return (
       <MuiThemeProvider muiTheme={AppTheme}>
         <Wrapper>
           <Header title={"myUEK"} />
-          <Switch>
+          {this.state.authorized 
+            ? <div><Switch>
             <Route exact path="/" render={() => (
               <Redirect to={this.state.baseView} />
             )} />
@@ -41,7 +46,9 @@ export default class App extends React.Component {
             <Route path='/schedule' component={ScheduleView} />
             <Route path='/profile' component={ProfileView} />
           </Switch>
-          <Navigation location={this.props.location}/>
+          <Navigation location={this.props.location}/></div>
+            : <Firebase onAuthorized={(auth) => this.setState({authorized: auth})}/>}
+          
         </Wrapper>
       </MuiThemeProvider>
     );
