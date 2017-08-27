@@ -17,6 +17,7 @@ import DiscussionsView from '../DiscussionsView';
 import ScheduleView from '../ScheduleView';
 import ProfileView from '../ProfileView';
 
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);

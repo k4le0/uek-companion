@@ -45,7 +45,8 @@ class DiscussionsList extends React.Component {
     render() {
         return (
             <Wrapper>
-                {
+
+                { 
                     ChatsAPI.getSpecialChats().map(chat => (
                         <Link to={`/discussion/${chat.number}`} key={chat.number}>
                             <SpecialChatTile

@@ -1,9 +1,13 @@
-import { combineReducers } from 'redux';
 
-const chatReducer = (state = {
+
+
+
+const INITIAL = {
     chatVisible: false,
     selectedIndex: 2,
-}, action) => {
+};
+
+export default (state = INITIAL, action) => {
     switch (action.type) {
         case "CHANGE":
             state = {
@@ -23,6 +27,4 @@ const chatReducer = (state = {
     return state;
 };
 
-export default combineReducers({
-    chatReducer
-});
+
