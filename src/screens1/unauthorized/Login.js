@@ -55,6 +55,11 @@ class Login extends Component {
     }
 
     render() {
+            const { from } = this.props.location.state || { from: { pathname: '/' } }
+
+    if (this.state.redirect === true) {
+return <Redirect to={from} />
+    }
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Text style={{ fontSize: 20, color: 'red' }}>Login Screen</Text>

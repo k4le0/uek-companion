@@ -17,26 +17,41 @@ import DiscussionsView from '../DiscussionsView';
 import ScheduleView from '../ScheduleView';
 import ProfileView from '../ProfileView';
 
-import Firebase from '../../components/Firebase'
+import Login from './Login'
 
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+    this.setCurrentUser = this.setCurrentUser.bind(this);
     this.state = {
       baseView: '/discussion',
       authorized: false,
     };
   }
 
-  render() {
+setCurrentUser(user) {
+    if (user) {
+      this.setState({
+        currentUser: user,
+        authenticated: true
+      })
+    } else {
+      this.setState({
+        currentUser: null,
+        authenticated: false
+      })
+    }
+  }
 
+  render() {
     return (
       <MuiThemeProvider muiTheme={AppTheme}>
         <Wrapper>
           <Header title={"myUEK"} />
           {this.state.authorized 
-            ? <div><Switch>
+            ? <div>
+              <Switch>
             <Route exact path="/" render={() => (
               <Redirect to={this.state.baseView} />
             )} />
@@ -46,11 +61,13 @@ export default class App extends React.Component {
             <Route path='/schedule' component={ScheduleView} />
             <Route path='/profile' component={ProfileView} />
           </Switch>
-          <Navigation location={this.props.location}/></div>
-            : <Firebase onAuthorized={(auth) => this.setState({authorized: auth})}/>}
+          <Navigation location={this.props.location}/>
+          </div>
+            : <Login setCurrentUser={this.setCurrentUser} onAuthorized={(auth) => this.setState({authorized: auth})}/>}
           
         </Wrapper>
       </MuiThemeProvider>
     );
+    
   }
 }

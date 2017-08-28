@@ -1,5 +1,21 @@
-import firebase from 'firebase';
-import React, { Component } from 'react';
+import firebase from 'firebase'
+import React, { Component } from 'react'
+import {Redirect} from 'react-router-dom'
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
+import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { black } from 'material-ui/styles/colors';
+
+
+const loginStyles = {
+  width: "90%",
+  maxWidth: "315px",
+  margin: "20px auto",
+  border: "1px solid #ddd",
+  borderRadius: "5px",
+  padding: "10px"
+}
 
 // Initialize Firebase
   var config = {
@@ -10,19 +26,73 @@ import React, { Component } from 'react';
     storageBucket: "uek-companion.appspot.com",
     messagingSenderId: "63240437365"
   };
-  firebase.initializeApp(config);
+  //firebase.initializeApp(config);
 
-class Firebase extends Component {
+const app = firebase.initializeApp(config)
+
+class Login extends Component {
 
      constructor(props) {
-        super(props);
-
+        super(props)
+        this.authWithEmailPassword = this.authWithEmailPassword.bind(this);
         this.state = {
-            email: null,
-
-            password: null,
+          authorized: false
         }
      }
+
+  componentDidMount(){
+    this.props.changeLoggedIn(true);
+  }
+
+authWithEmailPassword(event) {
+    event.preventDefault()
+
+    const email = this.emailInput.value
+    const password = this.passwordInput.value
+
+console.log(email,password)
+    app.auth().fetchProvidersForEmail(email)
+      .then((providers) => {
+        if (providers.length === 0) {
+          // create user
+          console.log("create user")
+          return app.auth().createUserWithEmailAndPassword(email, password)
+        } else if (providers.indexOf("password") === -1) {
+          // they used facebook
+          console.log("they used facebook")
+          this.loginForm.reset()
+          this.toaster.show({ intent: Intent.WARNING, message: "Try alternative login." })
+        } else {
+          // sign user in
+          console.log("sign user in")
+          return app.auth().signInWithEmailAndPassword(email, password)
+          console.log("sign user in2")
+          //console.log(app.auth().currentUser)
+
+        }
+      })
+      .then((user) => {
+          console.log(user);
+        if (user && user.email) {
+          this.loginForm.reset()
+          console.log(this.props)
+          this.props.setCurrentUser(user)
+          //this.setState({authorized: true})
+          console.log("uwierzytelniony user")
+          this.props.onAuthorized(true)
+
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      })
+  }
+
+
+
+
+
+
 
      componentDidMount() {
       if (firebase.auth().currentUser) {
@@ -182,7 +252,7 @@ class Firebase extends Component {
       document.getElementById('quickstart-verify-email').addEventListener('click', sendEmailVerification, false);
       document.getElementById('quickstart-password-reset').addEventListener('click', sendPasswordReset, false);
     } */
-
+/*
     render() {
        
         return <div><br/><br/><br/>
@@ -199,8 +269,76 @@ class Firebase extends Component {
                     <button id="quickstart-password-reset" name="verify-email">Send Password Reset Email</button>
                     <br/>
                     <button id="test-user-sign-in" name="verify-email">Sign in on Test User</button>
+                        <div>
+                          Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
+                        <div>Firebase auth <code>currentUser</code> object value:</div>
+                          <pre><code id="quickstart-account-details">null</code></pre>
+                        </div>
               </div>
+              
+
     }
+*/
+ render() {
+  /*     const { from } = this.props.location.state || { from: { pathname: '/' } }
+
+    if (this.state.redirect === true) {
+    return <Redirect to={from} />
+  } */
+  console.log(this);
+ return (
+      <div style={loginStyles}>
+      <br/><br/><br/>
+       
+        <form onSubmit={(event) => { this.authWithEmailPassword(event) }} ref={(form) => { this.loginForm = form }}>
+          <div style={{marginBottom: "10px"}}>
+            <h5>Note</h5>
+            If you don't have an account already, this form will create your account.
+          </div>
+          <label className="pt-label">
+            Email
+            <input style={{width: "100%"}} className="pt-input" name="email" type="email" ref={(input) => { this.emailInput = input }} placeholder="Email"></input>
+          </label>
+          <label className="pt-label">
+            Password
+            <input style={{width: "100%"}} className="pt-input" name="password" type="password" ref={(input) => { this.passwordInput = input }} placeholder="Password"></input>
+          </label>
+          <input style={{width: "100%"}} type="submit" className="pt-button pt-intent-primary" value="Log In"></input>
+        </form>
+       
+
+       <br/><br/>
+       
+      <Link to={"/"} onClick={() => this.props.onAuthorized(true)}>
+      <IconButton>
+          <FontIcon color={black} className="material-icons">verified_user</FontIcon>
+          </IconButton>
+      </Link>
+ </div>
+    
+
+
+    
+    
+    )
+  }
  }
 
-export default Firebase;
+const mapStateToProps = (state) => {
+  return {
+    authentication: state.auth,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logIn: (value) => {
+      dispatch({
+        type: "LOGIN",
+        payload: value
+      })
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
