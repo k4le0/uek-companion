@@ -50,18 +50,13 @@ authWithEmailPassword(event) {
     const email = this.emailInput.value
     const password = this.passwordInput.value
 
-console.log(email,password)
+//console.log(email,password)
     app.auth().fetchProvidersForEmail(email)
       .then((providers) => {
         if (providers.length === 0) {
           // create user
           console.log("create user")
           return app.auth().createUserWithEmailAndPassword(email, password)
-        } else if (providers.indexOf("password") === -1) {
-          // they used facebook
-          console.log("they used facebook")
-          this.loginForm.reset()
-          this.toaster.show({ intent: Intent.WARNING, message: "Try alternative login." })
         } else {
           // sign user in
           console.log("sign user in")

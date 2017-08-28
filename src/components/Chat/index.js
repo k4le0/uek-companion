@@ -18,6 +18,7 @@ class Chat extends Component {
 
   componentDidMount() {
     firebase.database().ref('messages/').on('value', (snapshot) => {
+      console.log(snapshot);
       const currentMessages = snapshot.val()
 
       if (currentMessages != null) {
@@ -53,6 +54,7 @@ class Chat extends Component {
 
   }
   render() {
+    console.log('Wczytywanie wiadomosci:',this)
     const currentMessage = this.state.messages.map((message, i) => {
       return (
         <li key={message.id}>{message.text}</li>
@@ -60,13 +62,14 @@ class Chat extends Component {
     })
     return (
       <div>
-        ChatroomComponent
-              <ol>
+        <br/>
+        <br/>ChatroomComponent
+        <ol>
           {currentMessage}
         </ol>
         <input onChange={this.updateMessage} type="text" placeholder="Message" />
-        <button onClick={this.submitMessage}>Submit Message</button>
-        <button >Test</button>
+        <button onClick={this.submitMessage}>Submit Message</button><br/>
+        <button onClick={console.log(this)}>Test</button>
       </div>
     )
   }

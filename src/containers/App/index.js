@@ -45,13 +45,12 @@ setCurrentUser(user) {
   }
 
   render() {
+    if(this.state.authorized ) { 
     return (
       <MuiThemeProvider muiTheme={AppTheme}>
         <Wrapper>
           <Header title={"myUEK"} />
-          {this.state.authorized 
-            ? <div>
-              <Switch>
+           <Switch>
             <Route exact path="/" render={() => (
               <Redirect to={this.state.baseView} />
             )} />
@@ -61,13 +60,23 @@ setCurrentUser(user) {
             <Route path='/schedule' component={ScheduleView} />
             <Route path='/profile' component={ProfileView} />
           </Switch>
-          <Navigation location={this.props.location}/>
-          </div>
-            : <Login setCurrentUser={this.setCurrentUser} onAuthorized={(auth) => this.setState({authorized: auth})}/>}
-          
+          <Navigation location={this.props.location}/>         
         </Wrapper>
       </MuiThemeProvider>
-    );
+    ); 
+  } 
+    else {
+      return (
+        <MuiThemeProvider muiTheme={AppTheme}>
+          <Wrapper>
+            <Header title={"myUEK"} />
+              <Login setCurrentUser={this.setCurrentUser} onAuthorized={(auth) => 
+                this.setState({authorized: auth})}
+                />
+          </Wrapper>
+        </MuiThemeProvider>
+      )
+    }
     
   }
 }
