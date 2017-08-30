@@ -1,38 +1,41 @@
-import React from 'react';
-import Chat from '../../components/Chat';
+import React from "react";
+import Chat from "../../components/Chat";
 
-import {connect} from 'react-redux';
- 
+import {connect} from "react-redux";
+
 class ChatView extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
-  componentDidMount(){
-    this.props.changeVisible(true);
-  }
+    componentDidMount() {
+        this.props.changeVisible(true);
+    }
 
-  render() {
-    return (
-      <div>
-        <Chat />
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <Chat name={this.props.match.params.name} db={this.props.db}/>
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = (state) => {
-  return {
-    chat: state.chatReducer,
-  };
+    return {
+        chat: state.chatReducer,
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    changeVisible: (value) => {
-      dispatch({
-        type: "CHANGE",
-        payload: value
-      })
-    },
-  };
+    return {
+        changeVisible: (value) => {
+            dispatch({
+                type: "CHANGE",
+                payload: value
+            })
+        },
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatView);

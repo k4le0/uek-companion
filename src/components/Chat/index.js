@@ -1,81 +1,57 @@
-import React, { Component } from 'react';
-import firebase from 'firebase'
-
-
+import React, {Component} from "react";
 
 
 class Chat extends Component {
 
-  constructor(props, context) {
-    super(props, context)
-    this.updateMessage = this.updateMessage.bind(this)
-    this.submitMessage = this.submitMessage.bind(this)
-    this.state = {
-      message: '',
-      messages: []
-    }
-  }
-
-  componentDidMount() {
-    firebase.database().ref('messages/').on('value', (snapshot) => {
-      console.log(snapshot);
-      const currentMessages = snapshot.val()
-
-      if (currentMessages != null) {
-        this.setState({
-          messages: currentMessages
-        })
-      }
-    })
-  }
-
-  updateMessage(event) {
-    console.log('updateMessage: ' + event.target.value)
-    this.setState({
-      message: event.target.value
-    })
-  }
-
-
-  submitMessage(event) {
-    console.log('submitMessage: ' + this.state.message)
-    const nextMessage = {
-      id: this.state.messages.length,
-      text: this.state.message
+    constructor(props, context) {
+        super(props, context);
+        this.getMessages = this.getMessages.bind(this);
+        this.submitMessage = this.submitMessage.bind(this);
+        this.state = {messages: []}
     }
 
-    firebase.database().ref('messages/' + nextMessage.id).set(nextMessage)
+    componentDidMount() {
+        this.getMessages();
+    }
 
-    // var list = Object.assign([], this.state.messages)
-    // list.push(nextMessage)
-    // this.setState({
-    //   messages: list
-    // })
+    getMessages() {
+        this.props.db.ref(`/rooms/${this.props.name}/messages`).on('value', (snapshot) => {
+            this.setState({messages: snapshot.val()});
+        });
+    }
 
-  }
-  render() {
-    console.log('Wczytywanie wiadomosci:',this)
-    const currentMessage = this.state.messages.map((message, i) => {
-      return (
-        <li key={message.id}>{message.text}</li>
-      )
-    })
-    return (
-      <div>
-        <br/>
-        <br/>ChatroomComponent
-        <ol>
-          {currentMessage}
-        </ol>
-        <input onChange={this.updateMessage} type="text" placeholder="Message" />
-        <button onClick={this.submitMessage}>Submit Message</button><br/>
-        <button onClick={console.log(this)}>Test</button>
-      </div>
-    )
-  }
+    componentWillUnmount() {
+        this.props.db.ref(`/rooms/${this.props.name}/messages`).off('value')
+    }
+
+    submitMessage(event) {
+        this.props.db.ref(`/rooms/${this.props.name}/messages`).push({
+            text: this.input.value,
+            user: JSON.parse(sessionStorage.getItem('user'))
+        });
+        this.input.value = '';
+    }
+
+    render() {
+        let currentMessages = [];
+        if(this.state.messages) {
+            currentMessages = Object.entries(this.state.messages).map((message, i) => {
+                return <li key={i}>{message[1].text}</li>
+            });
+        }
+        return (
+            <div>
+                ChatroomComponent
+                <ol>
+                    {currentMessages}
+                </ol>
+                <input type="text" placeholder="Message" ref={(input) => this.input = input}/>
+                <button onClick={this.submitMessage}>Submit Message</button>
+                <button >Test</button>
+            </div>
+        )
+    }
 }
-
-
 
 
 export default Chat;

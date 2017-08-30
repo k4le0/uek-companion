@@ -28,6 +28,7 @@ moment.updateLocale('pl', null);
 
 // Initialize Firebase
 
+
 render((
     <Provider store={store}>
         <Router>
