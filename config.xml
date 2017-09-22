@@ -7,6 +7,7 @@
     <author email="support@uekcompanion.pl" href="http://uekcompanion.pl">
         UEK Companion Team
     </author>
+    <preference name="fullscreen" value="true" />
     <content src="index.html" />
     <access origin="*" />
 </widget>

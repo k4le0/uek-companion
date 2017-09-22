@@ -1,21 +1,58 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
 
-import Avatar from 'material-ui/Avatar';
+import Avatar from "material-ui/Avatar";
 
-import Wrapper from './Wrapper';
-import UserName from './UserName';
-import UserNumber from './UserNumber';
+import Wrapper from "./Wrapper";
+import UserName from "./UserName";
+import UserNumber from "./UserNumber";
 
-const styles = {
-};
+import User from "../../user"
 
-const ProfileCard = (props) => (
-    <Wrapper>
-        <Avatar size={92} src={props.image}/>
-        <UserName>{props.username}</UserName>
-        <UserNumber>{props.number}</UserNumber>
-    </Wrapper>
-);
+const styles = {};
+
+class ProfileCard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.uploadImage = this.uploadImage.bind(this);
+        this.state = {
+            user: JSON.parse(sessionStorage.getItem('user'))
+        };
+        console.log(this.state.user);
+    }
+
+    uploadImage(e) {
+        let that = this;
+        if (e.target.files && e.target.files[0]) {
+            if (!e.target.files[0].type.match('image.*')) {
+                alert("Please upload image");
+                return false;
+            }
+            let reader = new FileReader();
+            reader.onload = function () {
+                that.state.user.photoURL = reader.result;
+                User.updateUser({photoURL: reader.result});
+                that.forceUpdate();
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+        return false;
+    }
+
+    render() {
+        return (
+            <Wrapper>
+                <div>
+                    <label htmlFor="file-input">
+                        <Avatar size={92} src={this.state.user.photoURL}/>
+                    </label>
+                    <input id="file-input" type="file" accept="image/*" capture="camera" style={{display: 'none'}} onChange={this.uploadImage}/>
+                </div>
+                <UserName>{this.state.user.username}</UserName>
+                <UserNumber>{this.state.user.number}</UserNumber>
+            </Wrapper>
+        )
+    }
+
+}
 
 export default ProfileCard;

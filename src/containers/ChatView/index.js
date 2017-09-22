@@ -15,7 +15,7 @@ class ChatView extends React.Component {
     render() {
         return (
             <div>
-                <Chat name={this.props.match.params.name} db={this.props.db}/>
+                <Chat name={this.props.match.params.name}/>
             </div>
         );
     }

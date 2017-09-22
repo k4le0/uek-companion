@@ -8,6 +8,7 @@ import {GridTile} from "material-ui/GridList";
 import ClassChatItem from "../../components/ClassChatItem";
 import SpecialChatTile from "../../components/SpecialChatTile";
 import {GridList, List} from "material-ui";
+import Firebase from "../../firebase";
 
 const styles = {
     gridList: {
@@ -149,13 +150,13 @@ class DiscussionsList extends React.Component {
     }
 
     getChats() {
-        this.props.db.ref('/rooms').on('value', (snapshot) => {
+        Firebase.db.ref('/rooms').on('value', (snapshot) => {
             this.setState({chats: snapshot.val()});
         });
     }
 
     componentWillUnmount() {
-        this.props.db.ref('/rooms').off('value');
+        Firebase.db.ref('/rooms').off('value');
     }
 
     render() {

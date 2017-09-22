@@ -1,38 +1,30 @@
 // Import all required modules
-import React from 'react';
-import { render } from 'react-dom';
-
+import React from "react";
+import {render} from "react-dom";
 // Import react router modules
-import { HashRouter as Router, Redirect, Route } from 'react-router-dom';
-
+import {HashRouter as Router, Route} from "react-router-dom";
 // Setup redux and react
-import configureStore from './store';
-const store = configureStore();
-
-import { Provider } from 'react-redux';
-
+import configureStore from "./store";
+import {Provider} from "react-redux";
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
-
+import injectTapEventPlugin from "react-tap-event-plugin";
 // Import main application container
-import App from './containers/App'
-
-//Import firebase modules
-import * as firebase from 'firebase';
-
+import App from "./containers/App";
 //Import momnents modules
 import moment from "moment";
+const store = configureStore();
+
+
+injectTapEventPlugin();
+
+
 moment.updateLocale('pl', null);
-
-// Initialize Firebase
-
 
 render((
     <Provider store={store}>
         <Router>
-            <Route path="/" component={App}></Route>
+            <Route component={App}/>
         </Router>
     </Provider>
 ), document.getElementById('app'));

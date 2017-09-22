@@ -9,10 +9,10 @@ class EventsView extends React.Component {
     return (
       <Switch>
         <Route exact path='/event' render={(props) => (
-            <EventsList db={this.props.db} />
+            <EventsList  />
         )}/>
         <Route path='/event/:name' render={(props) => (
-            <EventDetails {...props} db={this.props.db} />
+            <EventDetails {...props}  />
         )}/>
       </Switch>
     );

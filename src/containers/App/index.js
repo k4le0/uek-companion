@@ -16,34 +16,23 @@ import ProfileView from "../ProfileView";
 
 import Login from "./Login";
 
-import firebase from "firebase";
-
-const config = {
-    apiKey: "AIzaSyCtSfQcuV5YxTOAw0Yt86yWe6Rniio-9MQ",
-    authDomain: "uek-companion.firebaseapp.com",
-    databaseURL: "https://uek-companion.firebaseio.com",
-    projectId: "uek-companion",
-    storageBucket: "uek-companion.appspot.com",
-    messagingSenderId: "63240437365"
-};
-
-const app = firebase.initializeApp(config);
 
 export default class App extends React.Component {
     constructor() {
         super();
-        this.setCurrentUser = this.setCurrentUser.bind(this);
+        this.setUser = this.setUser.bind(this);
         this.state = {
-            baseView: '/discussion',
-            auth: app.auth(),
-            db: app.database(),
-            user: JSON.parse(sessionStorage.getItem('user'))
+            user: this.getUser()
         };
     }
 
-    setCurrentUser(user) {
-        sessionStorage.setItem('user', JSON.stringify(user || null));
-        this.setState({user: user || null});
+    setUser(user) {
+        sessionStorage.setItem('user', JSON.stringify(user));
+        this.setState({user: user});
+    }
+
+    getUser() {
+        return JSON.parse(sessionStorage.getItem('user'));
     }
 
     render() {
@@ -51,26 +40,24 @@ export default class App extends React.Component {
             <MuiThemeProvider muiTheme={AppTheme}>
                 <Wrapper>
                     <Header title={"myUEK"}/>
-                    {this.state.user
+                    { this.state.user
                         ? <div>
-                            <Switch>
-                                <Route path='/discussion' render={(props) => (
-                                    <DiscussionsView {...props} db={this.state.db} user={this.state.user}/>
-                                )}/>
-                                <Route path='/event' render={(props) => (
-                                    <EventsView {...props} db={this.state.db}/>
-                                )}/>
-                                <Route path='/stream' component={StreamView}/>
-                                <Route path='/schedule' component={ScheduleView}/>
-                                <Route path='/profile' component={ProfileView}/>
-                                <Route render={() => (
-                                    <Redirect to="/discussion"/>
-                                )}/>
-                            </Switch>
+                            <div style={{height: '100%'}} id="dupa">
+                                <Switch>
+                                    <Route path='/discussion' component={DiscussionsView}/>
+                                    <Route path='/event' component={EventsView}/>
+                                    <Route path='/stream' component={StreamView}/>
+                                    <Route path='/schedule' component={ScheduleView}/>
+                                    <Route path='/profile' component={ProfileView}/>
+                                    <Route render={() => (
+                                        <Redirect to="/discussion"/>
+                                    )}/>
+                                </Switch>
+                            </div>
                             <Navigation location={this.props.location}/>
                         </div>
-                        : <Login setCurrentUser={this.setCurrentUser} auth={this.state.auth}/>}
-
+                        : <Login setUser={this.setUser}/>
+                    }
                 </Wrapper>
             </MuiThemeProvider>
         );

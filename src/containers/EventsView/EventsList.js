@@ -1,4 +1,5 @@
 import React from "react";
+import Firebase from "../../firebase";
 
 import Wrapper from "./Wrapper";
 import EventListCard from "../../components/EventListCard";
@@ -76,13 +77,13 @@ class EventsList extends React.Component {
     }
 
     getEvents() {
-        this.props.db.ref('/events').on('value', (snapshot) => {
+        Firebase.db.ref('/events').on('value', (snapshot) => {
             this.setState({events: snapshot.val()});
         });
     }
 
     componentWillUnmount() {
-        this.props.db.ref('/events').off('value');
+        Firebase.db.ref('/events').off('value');
     }
 
     render() {

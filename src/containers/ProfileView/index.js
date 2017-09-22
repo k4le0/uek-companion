@@ -23,11 +23,9 @@ const UserAPI = {
 
 class ProfileView extends React.Component {
   render() {
-    const user = UserAPI.getUser();
-
     return (
       <Wrapper>
-        <ProfileCard username={user.username} number={user.number} image={user.image} />
+        <ProfileCard />
         <List>
           {
             UserAPI.getGroups().map(group => (

@@ -1,5 +1,5 @@
 import React from "react";
-
+import Firebase from "../../firebase";
 import Wrapper from "./Wrapper";
 import EventDetailsCard from "../../components/EventDetailsCard";
 
@@ -78,14 +78,13 @@ class EventDetails extends React.Component {
     }
 
     getDetails() {
-        console.log(this.props);
-        this.props.db.ref(`/events/${this.props.match.params.name}`).on('value', (snapshot) => {
+        Firebase.db.ref(`/events/${this.props.match.params.name}`).on('value', (snapshot) => {
             this.setState({details: snapshot.val()});
         });
     }
 
     componentWillUnmount() {
-        this.props.db.ref('/events').off('value');
+        Firebase.db.ref('/events').off('value');
     }
 
     render() {

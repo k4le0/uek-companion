@@ -1,6 +1,6 @@
-import firebase from "firebase";
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import Firebase from "../../firebase";
 
 
 const loginStyles = {
@@ -10,7 +10,7 @@ const loginStyles = {
     border: "1px solid #ddd",
     borderRadius: "5px",
     padding: "10px"
-}
+};
 
 class Login extends Component {
 
@@ -19,13 +19,13 @@ class Login extends Component {
         this.authWithEmailPassword = this.authWithEmailPassword.bind(this);
         this.state = {
             authorized: false
-        }
+        };
     }
 
     authWithEmailPassword(event) {
         event.preventDefault();
 
-        const auth = this.props.auth;
+        const auth = Firebase.auth;
         const email = this.emailInput.value;
         const password = this.passwordInput.value;
 
@@ -43,7 +43,7 @@ class Login extends Component {
             .then((user) => {
                 if (user && user.email) {
                     this.loginForm.reset();
-                    this.props.setCurrentUser(user);
+                    this.props.setUser(user);
                 }
             })
             .catch((error) => {
