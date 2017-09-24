@@ -84,14 +84,12 @@ class Chat extends Component {
         }
         return (
             <div>
-                ChatroomComponent
+                Mijsce spotkań studentów UEK:
                 <ol style={{listStyleType: 'none'}}>
                     {currentMessages}
                 </ol>
                 <span style={{display: 'inline-flex', width: '100%'}}>
-                    <label htmlFor="discussion-upload">
-                        <FontIcon className="material-icons">image</FontIcon>
-                    </label>
+
                     <input type="file" id="discussion-upload" accept="image/*" capture="camera"
                            style={{display: 'none'}}
                            onChange={this.uploadImage}/>
@@ -100,6 +98,9 @@ class Chat extends Component {
                     <IconButton onClick={this.submitMessage}>
                         <FontIcon className="material-icons">keyboard_return</FontIcon>
                     </IconButton>
+                    <label htmlFor="discussion-upload">
+                        <FontIcon className="material-icons">image</FontIcon>
+                    </label>
                 </span>
             </div>
         )

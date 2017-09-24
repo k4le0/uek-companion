@@ -42,6 +42,13 @@ class SelectFieldExampleSimple extends React.Component {
   getSchedule() {
         Firebase.db.ref('/groups/KrZZIs1011Io/').on('value', (snapshot) => {
             this.setState({schedules: snapshot.val()});
+            console.log(this.state.schedules);
+            var byDate = this.state.schedules.slice(0);
+            byDate.sort(function(a,b) {
+            return Date.parse(a.termin) - Date.parse(b.termin);
+            });
+            console.log('by date:');
+            console.log(byDate);
         });
     }
 
@@ -49,13 +56,17 @@ class SelectFieldExampleSimple extends React.Component {
 
   render() {
     let showschedule = [], i = 0;
+    let myPaddingStyle = {
+    paddingTop: 1,
+    paddingBottom: 1,
+}
     for (let schedule of Object.keys(this.state.schedules)) {
     showschedule.push(
-      <TableRow>
-          <TableRowColumn>{this.state.schedules[schedule].termin}</TableRowColumn>
-          <TableRowColumn>{this.state.schedules[schedule].start}</TableRowColumn>
-          <TableRowColumn>{this.state.schedules[schedule].przedmiot}</TableRowColumn>
-      // console.log(this.state.schedules[schedule].przedmiot)
+      <TableRow >
+          <TableRowColumn style={myPaddingStyle}>{this.state.schedules[schedule].termin}</TableRowColumn>
+          <TableRowColumn style={myPaddingStyle} >{this.state.schedules[schedule].start}</TableRowColumn>
+          <TableRowColumn style={myPaddingStyle}>{this.state.schedules[schedule].przedmiot}</TableRowColumn>
+      
       </TableRow>
     );
   }
@@ -81,9 +92,9 @@ class SelectFieldExampleSimple extends React.Component {
             adjustForCheckbox={this.state.showCheckboxes}
           >
           <TableRow>
-            <TableHeaderColumn>Termin</TableHeaderColumn>
-            <TableHeaderColumn>Godzina</TableHeaderColumn>
-            <TableHeaderColumn>Przedmiot</TableHeaderColumn>
+            <TableHeaderColumn style={myPaddingStyle}>Termin</TableHeaderColumn>
+            <TableHeaderColumn style={myPaddingStyle}>Godzina</TableHeaderColumn>
+            <TableHeaderColumn style={myPaddingStyle}>Przedmiot</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody
