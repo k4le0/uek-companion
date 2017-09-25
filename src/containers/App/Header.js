@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 import {connect} from "react-redux";
 
@@ -35,7 +35,7 @@ class Header extends React.Component {
             </Link>;
         }
         else {
-            rightIcon = <Link to={"/"} onClick={() => User.setUser(null)}>
+            rightIcon = <Link to="/discussion" onClick={() => {User.setUser(null); location.reload()} }>
                 <IconButton>
                     <FontIcon color={white} className="material-icons">power_settings_new</FontIcon>
                 </IconButton>
@@ -53,7 +53,6 @@ class Header extends React.Component {
         );
     }
 }
-;
 
 const mapStateToProps = (state) => {
     return {

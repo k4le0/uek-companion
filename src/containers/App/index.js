@@ -39,9 +39,9 @@ export default class App extends React.Component {
         return (
             <MuiThemeProvider muiTheme={AppTheme}>
                 <Wrapper>
-                    <Header title={"myUEK"}/>
                     { this.state.user
                         ? <div>
+                            <Header title={"myUEK"}/>
                             <div style={{height: '100%'}} id="dupa">
                                 <Switch>
                                     <Route path='/discussion' component={DiscussionsView}/>

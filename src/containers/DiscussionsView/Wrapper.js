@@ -2,14 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
-    position: absolute;
+    position: relative;
     padding: 0 8px;
     margin-top: 8px;
     margin-bottom: 64px;
-    top: 64px;
     left:0;
     width: 100%;
-    z-index: -1;
+    z-index: 20;
     display: flex;
     justify-content: center;
     flex-direction: column;

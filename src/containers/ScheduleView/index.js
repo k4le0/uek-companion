@@ -4,7 +4,7 @@ import SchedulePicker from '../../components/SchedulePicker';
 class ScheduleView extends React.Component {
   render() {
     return (
-      <div style={{position: 'absolute', top: '64px', minWidth: '100%'}}>
+      <div style={{position: 'relative', marginBottom: '64px', minWidth: '100%'}}>
         <SchedulePicker/>
       </div>
     );

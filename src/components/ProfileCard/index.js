@@ -17,7 +17,6 @@ class ProfileCard extends React.Component {
         this.state = {
             user: JSON.parse(sessionStorage.getItem('user'))
         };
-        console.log(this.state.user);
     }
 
     uploadImage(e) {
@@ -43,7 +42,7 @@ class ProfileCard extends React.Component {
             <Wrapper>
                 <div>
                     <label htmlFor="file-input">
-                        <Avatar size={92} src={this.state.user.photoURL}/>
+                        <Avatar style={{cursor: 'pointer'}} size={92} src={this.state.user.photoURL}/>
                     </label>
                     <input id="file-input" type="file" accept="image/*" capture="camera" style={{display: 'none'}} onChange={this.uploadImage}/>
                 </div>

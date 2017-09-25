@@ -26,6 +26,7 @@ const styles = {
         left: '0',
         bottom: '0',
         width: '100%',
+        zIndex: 100
     },
     smallerTab: {
         minWidth: '64px',
@@ -35,11 +36,11 @@ const styles = {
 
 class Navigation extends React.Component {
     getCurrentIndex = (path) => {
-        if (path === '/discussion') return 0;
-        if (path === '/event') return 1;
-        if (path === '/stream') return 2;
-        if (path === '/schedule') return 3;
-        if (path === '/profile') return 4;
+        if (path.includes('/discussion')) return 0;
+        if (path.includes('/event')) return 1;
+        if (path.includes('/stream')) return 2;
+        if (path.includes('/schedule')) return 3;
+        if (path.includes('/profile')) return 4;
     };
 
     componentDidMount() {
@@ -48,7 +49,7 @@ class Navigation extends React.Component {
     };
 
     render() {
-        if (this.props.chat.chatVisible) {
+        if (this.props.chat.chatVisible || this.props.location.pathname.startsWith('/discussion/')) {
             return (
                 <Paper zDepth={1} style={styles.bottomNav}>
                     <BottomNavigation selectedIndex={this.props.chat.selectedIndex}>
@@ -57,35 +58,35 @@ class Navigation extends React.Component {
                             icon={chatIcon}
                             onTouchTap={() => this.props.setSelected(0)}
                             style={styles.smallerTab}
-                            containerElement={<Link to="/chat"/>}
+                            containerElement={<Link to='chat'/>}
                         />
                         <BottomNavigationItem
                             label="Pytania"
                             icon={questionIcon}
                             onTouchTap={() => this.props.setSelected(1)}
                             style={styles.smallerTab}
-                            containerElement={<Link to="/questions"/>}
+                            containerElement={<Link to="questions"/>}
                         />
                         <BottomNavigationItem
                             label="Informacje"
                             icon={infoIcon}
                             onTouchTap={() => this.props.setSelected(2)}
                             style={styles.smallerTab}
-                            containerElement={<Link to="/info"/>}
+                            containerElement={<Link to="information"/>}
                         />
                         <BottomNavigationItem
                             label="Obecność"
                             icon={attendenceIcon}
                             onTouchTap={() => this.props.setSelected(3)}
                             style={styles.smallerTab}
-                            containerElement={<Link to="/attendence"/>}
+                            containerElement={<Link to="attendance"/>}
                         />
                         <BottomNavigationItem
                             label="Ankiety"
                             icon={pollsIcon}
                             onTouchTap={() => this.props.setSelected(4)}
                             style={styles.smallerTab}
-                            containerElement={<Link to="/polls"/>}
+                            containerElement={<Link to="polls"/>}
                         />
                     </BottomNavigation>
                 </Paper>

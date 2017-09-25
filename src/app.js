@@ -2,7 +2,7 @@
 import React from "react";
 import {render} from "react-dom";
 // Import react router modules
-import {HashRouter as Router, Route} from "react-router-dom";
+import {HashRouter, Route} from "react-router-dom";
 // Setup redux and react
 import configureStore from "./store";
 import {Provider} from "react-redux";
@@ -23,8 +23,8 @@ moment.updateLocale('pl', null);
 
 render((
     <Provider store={store}>
-        <Router>
+        <HashRouter>
             <Route component={App}/>
-        </Router>
+        </HashRouter>
     </Provider>
 ), document.getElementById('app'));

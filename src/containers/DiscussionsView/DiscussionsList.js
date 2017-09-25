@@ -18,10 +18,8 @@ const styles = {
     },
     titleStyle: {
         color: '#fafafa',
-        fontSize: '10px',
-        width: '100%',
-        titlePosition: 'top'
-
+        fontSize: '14px',
+        width: '75%'
     },
 };
 
@@ -166,7 +164,7 @@ class DiscussionsList extends React.Component {
         for (let chat of Object.keys(this.state.chats)) {
             if (this.state.chats[chat].special) {
                 special.push(
-                    <Link to={`/discussion/${chat}`} key={i}>
+                    <Link to={`/discussion/${chat}/chat`} key={i}>
                         <SpecialChatTile key={i}
                                          title={chat}
                                          subtitle={this.state.chats[chat].subtitle}
@@ -178,7 +176,7 @@ class DiscussionsList extends React.Component {
                 basic.push(
                     <GridTile key={i}
                               title={chat}
-                              containerElement={<Link to={`/discussion/${chat}`}/>}
+                              containerElement={<Link to={`/discussion/${chat}/chat`}/>}
                               titleStyle={styles.titleStyle}
                               titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)">
                         <img src={this.state.chats[chat].image}/>
@@ -187,7 +185,7 @@ class DiscussionsList extends React.Component {
             }
             else {
                 schedule.push(
-                    <Link to={`/discussion/${chat}`} key={i}>
+                    <Link to={`/discussion/${chat}/chat`} key={i}>
                         <ClassChatItem key={i} title={chat}
                                        subtitle={this.state.chats[chat].subtitle}
                                        image={this.state.chats[chat].image}/>
