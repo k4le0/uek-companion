@@ -84,6 +84,7 @@ class Chat extends Component {
         }
         return (
             <div>
+                 Miejsce spotkań studentów UEK:
                 <ol style={{listStyleType: 'none'}}>
                     {currentMessages}
                 </ol>
@@ -243,7 +244,7 @@ export class Attendance extends React.Component {
 
     componentDidMount() {
         Firebase.db.ref(`/rooms/${this.name}/attendance/${User.getUser().uid}`).on('value', (snapshot) => {
-            this.setState({confirmed: snapshot.val()});
+            this.setState({confirmed: !!snapshot.val()});
         });
     }
 
@@ -252,6 +253,7 @@ export class Attendance extends React.Component {
             confirmed: !this.state.confirmed
         });
         this.setState({confirmed: !this.state.confirmed});
+        console.log(this.state.confirmed);
     }
 
     componentWillUnmount() {
@@ -261,8 +263,8 @@ export class Attendance extends React.Component {
     render() {
         return (
             <div style={{textAlign: 'center', marginTop: '50px'}}>
-                <button style={{backgroundColor: this.state.confirmed ? 'red' : 'limegreen'}}
-                        onClick={this.toggleAttendance}>{this.state.confirmed ? 'Anuluj' : 'Potwierdź'}</button>
+                <button style={{backgroundColor: this.state.confirmed == true ? 'red' : 'limegreen'}}
+                        onClick={this.toggleAttendance}>{this.state.confirmed == true ? 'Anuluj' : 'Potwierdź'}</button>
             </div>
         )
     }

@@ -41,14 +41,19 @@ class SelectFieldExampleSimple extends React.Component {
     }
   getSchedule() {
         Firebase.db.ref('/groups/KrZZIs1011Io/').on('value', (snapshot) => {
-            this.setState({schedules: snapshot.val()});
-            console.log(this.state.schedules);
-            var byDate = this.state.schedules.slice(0);
+            //this.setState({schedules: snapshot.val()});
+            //console.log(this.state.schedules);
+
+            var byDate = snapshot.val();
             byDate.sort(function(a,b) {
-            return Date.parse(a.termin) - Date.parse(b.termin);
+              if(Date.parse(a.termin) - Date.parse(b.termin) == 0) {
+                return a.start < b.start ? -1 : 1;
+              }
+              return Date.parse(a.termin) - Date.parse(b.termin);
             });
             console.log('by date:');
             console.log(byDate);
+            this.setState({schedules: byDate})
         });
     }
 
