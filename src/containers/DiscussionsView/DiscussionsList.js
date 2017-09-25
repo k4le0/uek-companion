@@ -18,8 +18,10 @@ const styles = {
     },
     titleStyle: {
         color: '#fafafa',
-        fontSize: '14px',
-        width: '75%'
+        fontSize: '10px',
+        width: '100%',
+        titlePosition: 'top'
+
     },
 };
 
